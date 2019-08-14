@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+  <head>
+    <title>Book Store</title>
+    <script src="/libraries/scripts/1.6.4/angular.min.js"></script>
+    <script src="/libraries/scripts/1.6.4/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <link
+      rel="stylesheet"
+      href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+    />
+    <script>
+      var app = angular.module("myapp", ["ngRoute"]);
+      app.config(function($routeProvider) {
+        $routeProvider.when("/checkout", {
+          templateUrl: "views/checkout.html"
+        });
+        $routeProvider.when("/book", {
+          templateUrl: "views/booklist.html"
+        });
+        $routeProvider.otherwise({ templateUrl: "views/booklist.html" });
+      });
+    </script>
+    <script src="/controller/app.js"></script>
+    <script src="/controller/bookListController.js"></script>
+    <script src="/filters/customFilters.js"></script>
+    <script src="/directives/cartSummary/directive.js"></script>
+    <script src="/servieces/cart.js"></script>
+
+  </head>
+  <body ng-controller="mainCtrl">
+    <div class="navbar navbar-inverse">
+      <a class="navbar-brand" href="#">Books Store</a>
+      <cart-summary></cart-summary>
+    </div>
+    <div class="alert alert-danger" ng-show="data.error">
+      Error ({{ data.error.status }}). The book data was not load.
+      <a href="index.html" class="alert-link">Click here for try again</a>
+    </div>
+    <div ng-view></div>
+  </body>
+</html>

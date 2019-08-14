@@ -1,0 +1,23 @@
+<h2 ng-href="#voip">Checkout summary goes here</h2>
+<div ng-controller="bookCtrl">
+    <div class="well" ng-repeat='item in getBook()|orderBy:"name"'>
+        <h3>
+            <strong>{{ item.name }}</strong>
+            <span class="pull-right label label-primary">
+                {{ item.price*item.count | currency }}
+            </span>
+
+        </h3>
+        <span class="lead">Amount: {{ item.count }}</span>
+    </div>
+
+    <div class="well">
+        <h3>
+            <strong>Total</strong>
+            <span class="pull-right label label-primary">
+                {{ total()| currency }}
+            </span>
+
+        </h3>
+    </div>
+</div>
